@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
 		before_action :authenticate_user!
+		before_action :correct_user, only: [:edit, :update]
 	def new
 	end
 
@@ -54,10 +55,24 @@ class BooksController < ApplicationController
 		end
 	end
 
+	#def correct_user
+  	#@micropost = current_user.microposts.find(params[:id])
+    	#unless
+    		#@micropost
+      	#redirect_to root_url
+    	#end
+	#end
 
 	private
 		def book_params
 			params.require(:book).permit(:title,:body)
+		end
+
+		def correct_user
+			book = Book.find(params[:id])
+			if current_user.id != book.user.id
+			redirect_to books_path
+		end
 		end
 end
 

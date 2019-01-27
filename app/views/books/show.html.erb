@@ -1,0 +1,17 @@
+<div class="col-lg-8">
+			<table class="table">
+			<thead>
+				<th>title</th>
+				<th>body</th>
+			</thead>
+
+			<tbody>
+				<td><%= @book.title %></td>
+				<td><%= @book.body %></td>
+			<% if @book.user == current_user %>
+				<td><%= link_to "delete", book_path(@book), method: :delete,class: "destroy_book_#{@book.id}" %></td>
+				<td><%= link_to "edit", edit_book_path(@book),class: "edit_user_#{@book.id}" %></td>
+			<% end %>
+			</tbody>
+		</table>
+</div>

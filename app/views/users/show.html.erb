@@ -1,0 +1,39 @@
+<% if flash[:notice] %>
+	<p><%= flash[:notice] %></p>
+<% end %>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-4">
+			<h2>User info</h2>
+		<br><%= @user.name %></br>
+		<%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg',fallback: "no_image.jpg" %>
+		<br><%= link_to "プロフィール編集", edit_user_path(@user),class: "edit_user_#{@user.id}" %></br>
+		<br><%= @user.int %></br>
+		<h2>New book</h2>
+		<%= form_for(@book) do |f| %>
+
+			<h4>title</h4>
+			<%= f.text_field :title, class: "book_title"%>
+
+			<h4>body</h4>
+			<%= f.text_area :body, class: "book_body"%>
+
+			<p><%= f.submit 'createbook' %></p>
+		<% end %>
+		</div>
+		<div class="col-lg-8">
+			<table class="table">
+			<thead>
+				<th>title</th>
+				<th>body</th>
+			</thead>
+		<% @books.each do |book| %>
+			<tbody>
+			<td><%= link_to book.title,book_path(book.id),class: "book_#{book.id}" %></td>
+			<td><%= book.body %></td>
+			<% end %>
+			</tbody>
+		</div>
+	</table>
+	</div>
+</div>

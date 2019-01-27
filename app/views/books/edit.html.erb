@@ -1,0 +1,14 @@
+<% if flash[:notice] %>
+	<p><%= flash[:notice] %></p>
+<% end %>
+<%= form_for(@book) do |f| %>
+
+			<h4>title</h4>
+			<%= f.text_field :title, class: "book_title"%>
+
+			<h4>body</h4>
+			<%= f.text_area :body, class: "book_body"%>
+
+			<p><%= f.submit '保存' %></p>
+<% end %>
+	<%= link_to "Back" ,books_path, class: "back" %>

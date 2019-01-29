@@ -17,3 +17,5 @@ class ApplicationController < ActionController::Base
 		devise_parameter_sanitizer.permit(:sing_in, keys:[:name,])
 	end
 end
+
+

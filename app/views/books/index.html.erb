@@ -24,11 +24,15 @@
 		<div class="col-lg-8">
 			<table class="table">
 			<thead>
+				<th>image</th>
 				<th>title</th>
 				<th>body</th>
 			</thead>
 		<% @books.each do |book| %>
 			<tbody>
+			<td><%= link_to user_path(book.id) ,class: "user" do %>
+			<%= attachment_image_tag book.user, :profile_image, :fill, 60, 60, format: 'jpeg',fallback: "no_image.jpg" %>
+				<% end %></td>
 			<td><%= link_to book.title,book_path(book.id),class: "book_#{book.id}" %></td>
 			<td><%= book.body %></td>
 			<% end %>

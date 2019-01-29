@@ -1,4 +1,6 @@
-
+<% if flash[:notice] %>
+	<p><%= flash[:notice] %></p>
+<% end %>
 <%= form_for(@user) do |f| %>
     <div class="form-group has-icon">
         <label class="control-label sr-only" for="inputEmail">Name</label>

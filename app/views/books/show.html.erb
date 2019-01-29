@@ -1,6 +1,26 @@
 <% if flash[:notice] %>
 	<p><%= flash[:notice] %></p>
 <% end %>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-4">
+		<h2>User info</h2>
+		<br><%= @user.name %></br>
+		<%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg',fallback: "no_image.jpg" %>
+		<br><%= link_to "プロフィール編集", edit_user_path(@user),class: "edit_user_#{@user.id}" %></br>
+		<br><%= @user.int %></br>
+		<h2>New book</h2>
+		<%= form_for(@book) do |f| %>
+
+			<h4>title</h4>
+			<%= f.text_field :title, class: "book_title" %>
+
+			<h4>body</h4>
+			<%= f.text_area :body, class: "book_body" %>
+
+			<p><%= f.submit 'createbook' %></p>
+		<% end %>
+	</div>
 <div class="col-lg-8">
 			<table class="table">
 			<thead>
@@ -9,11 +29,11 @@
 			</thead>
 
 			<tbody>
-				<td><%= @book.title %></td>
-				<td><%= @book.body %></td>
-			<% if @book.user == current_user %>
-				<td><%= link_to "delete", book_path(@book), method: :delete,class: "destroy_book_#{@book.id}" %></td>
-				<td><%= link_to "edit", edit_book_path(@book),class: "edit_book_#{@book.id}" %></td>
+				<td><%= @books.title %></td>
+				<td><%= @books.body %></td>
+			<% if @books.user == current_user %>
+				<td><%= link_to "delete", book_path(@books), method: :delete,class: "destroy_book_#{@books.id}" %></td>
+				<td><%= link_to "edit", edit_book_path(@books),class: "edit_book_#{@books.id}" %></td>
 			<% end %>
 			</tbody>
 		</table>
